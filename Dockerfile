@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM knowledgearcdotorg/base
 MAINTAINER development@knowledgearc.com
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -17,6 +17,8 @@ RUN a2enmod ssl
 RUN a2enmod proxy_fcgi
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+RUN rm -Rf /var/www/html
 
 EXPOSE 80 443
 
